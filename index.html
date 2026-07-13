@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rodrigo · Misión Legendaria</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- ==========================
+         CIELO
+    =========================== -->
+
+    <div class="sky"></div>
+
+    <!-- ==========================
+         PARTÍCULAS XP
+    =========================== -->
+
+    <div class="xp-particles"></div>
+
+    <!-- ==========================
+         HUD
+    =========================== -->
+
+    <div class="wrapper">
+
+        <div class="hud">
+
+            <div class="hearts">
+
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+
+            </div>
+
+            <div class="hunger">
+
+                <div class="food"></div>
+                <div class="food"></div>
+                <div class="food"></div>
+                <div class="food"></div>
+                <div class="food"></div>
+
+                <div class="food"></div>
+                <div class="food"></div>
+                <div class="food"></div>
+                <div class="food"></div>
+                <div class="food"></div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================
+             INVITACIÓN
+        =========================== -->
+
+        <main class="invitacion">
+
+            <h1>RODRIGO</h1>
+
+            <div class="subtitulo">
+
+                NUEVA MISIÓN DESBLOQUEADA
+
+            </div>
+
+            <section class="mensaje-principal">
+
+                <strong>
+                    ¡Primaria completada!
+                </strong>
+
+                <br><br>
+
+                Has derrotado al jefe final del tutorial.
+
+                <br><br>
+
+                Ahora comienza una nueva aventura.
+
+                <br><br>
+
+                Tu tío Carlos necesita un compañero para una misión legendaria.
+
+                <br><br>
+
+                📦 Abre los dos cofres para descubrir la misión.
+
+            </section>
+
+            <!-- ==========================
+                 INVENTARIO
+            =========================== -->
+
+            <section class="inventario">
+
+                <div class="qr-container">
+
+                    <div class="qr-box" id="qrBox1">
+
+                        <img
+                            src="img/qr1.png"
+                            alt="QR Nether"
+                            class="qr-img"
+                            style="display:none;"
+                        >
+
+                        <img
+                            src="img/cofre.png"
+                            alt="Cofre"
+                            class="cofre-icono"
+                        >
+
+                        <p>Cofre del Nether</p>
+
+                    </div>
+
+                    <div class="qr-box" id="qrBox2">
+
+                        <img
+                            src="img/qr2.png"
+                            alt="QR End"
+                            class="qr-img"
+                            style="display:none;"
+                        >
+
+                        <img
+                            src="img/cofre.png"
+                            alt="Cofre"
+                            class="cofre-icono"
+                        >
+
+                        <p>Cofre del End</p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ==========================
+                 BOTÓN
+            =========================== -->
+
+            <div class="accion-aventura">
+
+                <button class="boton-minecraft">
+
+                    ACTIVAR PORTAL
+
+                </button>
+
+            </div>
+
+            <!-- ==========================
+                 MENSAJE
+            =========================== -->
+
+            <div class="cofre-mensaje">
+
+                Haz clic en un cofre...
+
+            </div>
+
+            <!-- ==========================
+                 CHAT
+            =========================== -->
+
+            <div class="chat-box">
+
+            </div>
+
+            <!-- ==========================
+                 FECHA
+            =========================== -->
+
+            <div class="fecha">
+
+                📅 Sábado 18 de julio
+
+                <br>
+
+                🕗 8:00 AM
+
+            </div>
+
+            <div class="autor">
+
+                Carlos · Tu tío aventurero
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- ==========================
+         NIVEL
+    =========================== -->
+
+    <div class="level">
+
+        27
+
+    </div>
+
+    <!-- ==========================
+         XP
+    =========================== -->
+
+    <div class="xp-bar-container">
+
+        <div class="xp-bar-fill"></div>
+
+    </div>
+
+    <!-- ==========================
+         SCRIPT
+    =========================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
