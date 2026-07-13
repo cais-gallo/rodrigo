@@ -781,6 +781,113 @@ function activatePortal() {
     unlockAchievement("¡Portal Activado!");
 }
 
+/*==========================================================
+    MÚSICA DE FONDO
+===========================================================*/
+
+const BackgroundMusic = {
+    audio: null,
+    enabled: true,
+    volume: 0.3,
+    
+    init() {
+        try {
+            this.audio = new Audio('audio/background.mp3');
+            this.audio.loop = true;
+            this.audio.volume = this.volume;
+            this.audio.preload = 'auto';
+        } catch (e) {
+            console.log('No se pudo cargar la música de fondo');
+        }
+    },
+    
+    play() {
+        if (!this.audio || !this.enabled) return;
+        
+        // Intentar reproducir (puede ser bloqueado por el navegador)
+        const playPromise = this.audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                // El navegador bloqueó la reproducción automática
+                console.log('Reproducción automática bloqueada. Esperando interacción...');
+                
+                // Reproducir cuando el usuario haga clic en cualquier lugar
+                const resumeAudio = () => {
+                    this.audio.play().catch(() => {});
+                    document.removeEventListener('click', resumeAudio);
+                    document.removeEventListener('keydown', resumeAudio);
+                };
+                
+                document.addEventListener('click', resumeAudio);
+                document.addEventListener('keydown', resumeAudio);
+            });
+        }
+    },
+    
+    stop() {
+        if (this.audio) {
+            this.audio.pause();
+            this.audio.currentTime = 0;
+        }
+    },
+    
+    setVolume(vol) {
+        this.volume = Math.max(0, Math.min(1, vol));
+        if (this.audio) {
+            this.audio.volume = this.volume;
+        }
+    }
+};
+
+/*==========================================================
+    INICIALIZAR MÚSICA
+===========================================================*/
+
+// Iniciar música cuando la página cargue
+window.addEventListener('load', () => {
+    BackgroundMusic.init();
+    BackgroundMusic.play();
+});
+
+// Si el usuario hace clic en cualquier parte, asegurar que la música suene
+document.addEventListener('click', () => {
+    if (BackgroundMusic.audio && BackgroundMusic.audio.paused) {
+        BackgroundMusic.play();
+    }
+});
+
+// Detener música en modo portal (si quieres que se detenga)
+// Modificar la función activatePortal para detener la música
+const originalActivatePortal = activatePortal;
+
+activatePortal = function() {
+    if (Game.portalActive) {
+        message("El portal ya está activo");
+        return;
+    }
+
+    if (Game.chestsOpened < 2) {
+        message("¡Abre los dos cofres primero!", "#FF5555");
+        chat("Necesitas abrir ambos cofres para activar el portal.", "warning");
+        shake(UI.button);
+        return;
+    }
+
+    Game.portalActive = true;
+    
+    // Detener música de fondo al activar el portal
+    BackgroundMusic.stop();
+    
+    AudioSystem.play("portal");
+    activateNetherMode();
+    UI.invitation.classList.add("portal-mode");
+    rainXP(50);
+    message("🔥 Portal del Nether activado", "#FF6600");
+    chat("El portal se ha abierto. ¡Bienvenido al Nether!", "warning");
+    unlockAchievement("¡Portal Activado!");
+};
+
 
 /*==========================================================
     EFECTO ENTRADA
